@@ -2,9 +2,20 @@ import { NavLink } from 'react-router-dom';
 import logoimg  from '../assets/icons/logo.svg'
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
+import { useContext } from 'react';
+import { AuthContext } from '../authproviders/AuthProvider';
 
 
 const Nav = () => {
+
+   const {user, olgOut} = useContext(AuthContext);
+
+   const handleLogOut = () =>{
+    olgOut()
+    .then(()=>{})
+    .catch(error=> console.log(error));
+
+   }
  
    const navItems = <>
     
@@ -13,6 +24,11 @@ const Nav = () => {
     <li><NavLink to='/services'>Services</NavLink></li>
      <li><NavLink to='/blog'>Blog</NavLink></li>
      <li><NavLink to='/contact'>Contact</NavLink></li>
+     { user?.email? <>
+      <li><NavLink to='/bookings'>My Bookings</NavLink></li>
+      <li><button onClick={handleLogOut}>Log out</button></li>
+     </> 
+     :<li><NavLink to='/login'>Login</NavLink></li>}
    
    </>
 
