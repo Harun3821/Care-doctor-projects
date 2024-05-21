@@ -30,11 +30,11 @@ export const router = createBrowserRouter([
         },
         {
           path:'checkout/:id',
-          element:<Checkout/>,
+          element:<Privetroute><Checkout/></Privetroute>,
           loader:({params}) => fetch(`http://localhost:5000/services/${params.id}`)
         },
         {
-          path:'/bookings',
+          path:'bookings',
           element:<Privetroute><Bookiengs></Bookiengs></Privetroute>,
         }
 
